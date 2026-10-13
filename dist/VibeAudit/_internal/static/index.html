@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Audit — Diagnostic & Santé des Projets Vibe-Codés</title>
+    <meta name="description" content="Auditez vos projets assistés par IA : détection des secrets en clair, dépendances fantômes, gestion d'erreurs paresseuse et calcul du Vibe Score.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Ambient Background Glows -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+
+    <div class="app-layout">
+        <!-- Header -->
+        <header class="navbar">
+            <div class="brand">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h1>Vibe Audit <span class="brand-badge">PRO</span></h1>
+                    <p class="tagline">Analyseur de viabilité pour projets générés par IA</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <div class="quick-samples">
+                    <label for="sample-select" class="sample-label">Démo rapide :</label>
+                    <select id="sample-select" class="select-input">
+                        <option value="">-- Choisir un projet d'exemple --</option>
+                    </select>
+                </div>
+                <button id="btn-open-config" class="btn btn-secondary" title="Configurer les règles d'audit">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    <span>Tests sélectionnés (<strong id="active-tests-count">6</strong>)</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs: Static Code vs Dynamic Network .EXE -->
+        <nav class="main-nav-tabs">
+            <button id="tab-btn-static" class="nav-tab active">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                <span>Audit Code Source (Statique)</span>
+            </button>
+            <button id="tab-btn-dynamic" class="nav-tab">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+                <span>Audit Réseau .EXE (Dynamique)</span>
+                <span class="tab-badge-new">NOUVEAU</span>
+            </button>
+        </nav>
+
+        <!-- VIEW 1: Static Code Audit -->
+        <div id="view-static-audit" class="view-section">
+            <!-- Main Scanning Control Bar -->
+            <section class="scan-bar-card glass-panel">
+                <div class="target-input-wrap">
+                    <div class="input-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </div>
+                    <input type="text" id="target-path-input" placeholder="Chemin du dossier projet (ex: C:\MonProjet ou samples/vibe_chaos_saas)..." autocomplete="off">
+                </div>
+                <button id="btn-run-audit" class="btn btn-primary btn-glow">
+                    <svg class="run-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <span>Lancer l'Audit Vibe</span>
+                </button>
+            </section>
+
+        <!-- Main Content Area: Test Picker Modal / Left Drawer & Results View -->
+        <main class="main-container">
+            <!-- Test Rules Configuration Panel (Modal or collapsible drawer) -->
+            <div id="tests-modal" class="modal-overlay hidden">
+                <div class="modal-content glass-panel">
+                    <div class="modal-header">
+                        <div>
+                            <h2>Sélection des Tests d'Audit</h2>
+                            <p class="modal-subtitle">Activez ou désactivez les vérifications adaptées à vos objectifs.</p>
+                        </div>
+                        <button id="btn-close-modal" class="btn-close">&times;</button>
+                    </div>
+
+                    <!-- Presets buttons -->
+                    <div class="presets-bar">
+                        <span class="preset-title">Profils rapides :</span>
+                        <button class="preset-btn" data-preset="all">⚡ Tout Cocher</button>
+                        <button class="preset-btn" data-preset="security">🔒 Focus Sécurité</button>
+                        <button class="preset-btn" data-preset="hygiene">🧹 Dette & Code Mort</button>
+                        <button class="preset-btn" data-preset="prod">🚀 Production Stricte</button>
+                    </div>
+
+                    <!-- Rules List -->
+                    <div id="rules-list-container" class="rules-grid">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <div class="modal-footer">
+                        <span id="selected-summary-text">6 tests activés sur 6</span>
+                        <button id="btn-save-tests" class="btn btn-primary">Valider la sélection</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading-state" class="loading-panel glass-panel hidden">
+                <div class="radar-spinner">
+                    <div class="pulse-ring"></div>
+                    <div class="pulse-ring delay-1"></div>
+                    <div class="pulse-core"></div>
+                </div>
+                <h3>Analyse du projet en cours...</h3>
+                <p id="loading-step-text">Inspection de l'AST, détection des clés et dépendances fantômes</p>
+            </div>
+
+            <!-- Initial Hero / Empty State -->
+            <div id="hero-welcome" class="welcome-card glass-panel">
+                <div class="hero-graphic">
+                    <div class="ai-sparkle">✨</div>
+                    <div class="vibe-icon-large">⚡</div>
+                    <div class="ai-sparkle sparkle-2">🛡️</div>
+                </div>
+                <h2>Évaluez la viabilité réelle de votre code généré par IA</h2>
+                <p>Le <strong>vibe coding</strong> permet de prototyper à la vitesse de la lumière, mais dissimule fréquemment des clés d'API exposées, des dépendances inventées par l'IA et des blocs d'erreurs ignorées.</p>
+
+                <div class="hero-feature-pills">
+                    <div class="feature-pill"><span>🔑</span> Détection de secrets codés en dur</div>
+                    <div class="feature-pill"><span>👻</span> Hallucinations de packages</div>
+                    <div class="feature-pill"><span>🙈</span> 'except: pass' & exceptions avalées</div>
+                    <div class="feature-pill"><span>🏛️</span> Fichiers 'God objects' monolithiques</div>
+                    <div class="feature-pill"><span>🛡️</span> Failles XSS & injections SQL</div>
+                </div>
+
+                <div class="hero-cta-buttons">
+                    <button id="btn-hero-demo-chaos" class="btn btn-danger-soft">
+                        <span>🔥 Tester le projet Chaos SaaS (Vibe-Coded)</span>
+                    </button>
+                    <button id="btn-hero-demo-clean" class="btn btn-success-soft">
+                        <span>🛡️ Tester le projet Hardened (Propre)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Dashboard -->
+            <div id="results-dashboard" class="dashboard-layout hidden">
+                <!-- Top Summary Banner -->
+                <div class="overview-grid">
+                    <!-- Gauge Card -->
+                    <div class="metric-card score-card glass-panel">
+                        <div class="score-card-header">
+                            <span class="card-label">VIBE READINESS SCORE</span>
+                            <span id="badge-level" class="status-badge badge-warning">⚠️ MVP</span>
+                        </div>
+                        <div class="score-gauge-wrap">
+                            <svg class="score-gauge-svg" viewBox="0 0 140 140">
+                                <circle class="gauge-bg" cx="70" cy="70" r="58"></circle>
+                                <circle id="gauge-circle-fill" class="gauge-fill" cx="70" cy="70" r="58"></circle>
+                            </svg>
+                            <div class="gauge-inner-text">
+                                <span id="vibe-score-num" class="score-number">0</span>
+                                <span class="score-total">/100</span>
+                            </div>
+                        </div>
+                        <p id="vibe-verdict" class="score-verdict">Calcul du score...</p>
+                    </div>
+
+                    <!-- Stats Card -->
+                    <div class="metric-card stats-card glass-panel">
+                        <span class="card-label">MÉTRIQUES DE SCAN</span>
+                        <div class="stats-mini-grid">
+                            <div class="mini-stat">
+                                <span class="stat-value" id="stat-files">0</span>
+                                <span class="stat-name">Fichiers analysés</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="stat-value" id="stat-lines">0</span>
+                                <span class="stat-name">Lignes de code</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="stat-value text-critical" id="stat-critical">0</span>
+                                <span class="stat-name">Critiques</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="stat-value text-high" id="stat-high">0</span>
+                                <span class="stat-name">Moyennes / Hautes</span>
+                            </div>
+                        </div>
+                        <div class="export-actions">
+                            <button id="btn-export-markdown" class="btn btn-secondary btn-sm">
+                                📋 Copier rapport Markdown
+                            </button>
+                            <button id="btn-export-json" class="btn btn-secondary btn-sm">
+                                💾 Télécharger JSON
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Category Breakdown -->
+                    <div class="metric-card categories-card glass-panel">
+                        <span class="card-label">SANTÉ PAR CATÉGORIE</span>
+                        <div id="category-bars-list" class="category-bars-wrap">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tech Stack & Languages Card -->
+                <div id="tech-stack-card" class="tech-stack-card glass-panel">
+                    <div class="section-title-row">
+                        <div class="title-with-icon">
+                            <span class="section-icon">🛠️</span>
+                            <h3>Technologies & Langages Détectés</h3>
+                        </div>
+                        <span id="primary-lang-badge" class="badge-hint">Langage principal : Détection...</span>
+                    </div>
+
+                    <!-- Language Distribution Bar (GitHub-style) -->
+                    <div class="lang-section">
+                        <div class="lang-header-row">
+                            <span class="sub-label">RÉPARTITION DU CODE PAR LANGAGE</span>
+                            <span id="total-code-lines-badge" class="code-lines-badge">0 lignes de code</span>
+                        </div>
+                        <div id="lang-progress-bar" class="lang-progress-bar">
+                            <!-- Populated dynamically -->
+                        </div>
+                        <div id="lang-legend-list" class="lang-legend-list">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Frameworks, DB, AI & Tools -->
+                    <div class="frameworks-section">
+                        <span class="sub-label">FRAMEWORKS, LIBS & ENVIRONNEMENT</span>
+                        <div id="frameworks-container" class="frameworks-container">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Priority Action Plan -->
+                <div class="action-plan-card glass-panel">
+                    <div class="section-title-row">
+                        <div class="title-with-icon">
+                            <span class="section-icon">⚡</span>
+                            <h3>Plan d'Action Correctif Prioritaire</h3>
+                        </div>
+                        <span class="badge-hint">Les 6 actions les plus urgentes</span>
+                    </div>
+                    <div id="action-plan-items" class="action-plan-grid">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Findings Explorer with Filters -->
+                <div class="findings-explorer glass-panel">
+                    <div class="findings-header">
+                        <div class="title-with-icon">
+                            <span class="section-icon">🔍</span>
+                            <h3>Anomalies Détaillées & Explications IA (<span id="findings-total-count">0</span>)</h3>
+                        </div>
+                        <div class="findings-filters">
+                            <button class="filter-btn active" data-severity="ALL">Toutes</button>
+                            <button class="filter-btn" data-severity="CRITICAL">Critiques</button>
+                            <button class="filter-btn" data-severity="HIGH">Hautes</button>
+                            <button class="filter-btn" data-severity="MEDIUM">Moyennes</button>
+                            <button class="filter-btn" data-severity="LOW">Mineures</button>
+                        </div>
+                    </div>
+
+                    <!-- Findings List -->
+                    <div id="findings-container" class="findings-list">
+                        <!-- Findings cards rendered here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+        </div> <!-- End of view-static-audit -->
+
+        <!-- VIEW 2: Dynamic Network .EXE Audit -->
+        <div id="view-dynamic-audit" class="view-section hidden">
+            <!-- Dynamic Control Bar -->
+            <section class="dynamic-control-panel glass-panel">
+                <div class="dynamic-panel-header">
+                    <div class="panel-badge-row">
+                        <span class="badge-network-active">⚡ AUDIT COMPORTEMENTAL RÉSEAU</span>
+                        <span class="badge-sub">Windows Sockets & Process Tree Tracing</span>
+                    </div>
+                    <h2>Analyse dynamique d'exécutable (.EXE)</h2>
+                    <p class="panel-subtitle">Surveillez en direct l'ensemble de l'arbre de processus (incluant WebView2, Chromium et sous-processus) pour certifier un fonctionnement 100% local, détecter la télémétrie clandestine ou auditer les appels API externes.</p>
+                </div>
+
+                <!-- Mode selector -->
+                <div class="audit-mode-selector">
+                    <button id="btn-mode-launch" class="mode-btn active" data-mode="launch">
+                        <span>🚀 Lancer un exécutable (.exe)</span>
+                    </button>
+                    <button id="btn-mode-attach" class="mode-btn" data-mode="attach">
+                        <span>🔗 S'attacher à un processus actif (PID)</span>
+                    </button>
+                </div>
+
+                <!-- Mode 1: Launch .exe -->
+                <div id="dynamic-launch-fields" class="dynamic-fields-group">
+                    <div class="target-input-wrap">
+                        <div class="input-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </div>
+                        <input type="text" id="dynamic-exe-input" placeholder="Chemin du .exe (ex: C:\Users\ash\AppData\Local\OpenPeek\openpeek.exe)..." autocomplete="off">
+                    </div>
+
+                    <!-- Quick Pre-fill Chips -->
+                    <div class="quick-chips-row">
+                        <span class="chips-label">Exemples rapides :</span>
+                        <button class="chip-btn" id="chip-openpeek" type="button" title="Auditer l'application OpenPeek">
+                            🎯 OpenPeek (openpeek.exe)
+                        </button>
+                        <button class="chip-btn" id="chip-network-test" type="button" title="Tester un appel externe GitHub">
+                            🧪 Test Flux GitHub (Python Test App)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mode 2: Attach to running PID -->
+                <div id="dynamic-attach-fields" class="dynamic-fields-group hidden">
+                    <div class="attach-select-row">
+                        <div class="select-wrapper">
+                            <select id="dynamic-pid-select" class="select-input">
+                                <option value="">-- Chargement des processus actifs... --</option>
+                            </select>
+                        </div>
+                        <button id="btn-refresh-pids" type="button" class="btn btn-secondary btn-sm" title="Rafraîchir la liste">
+                            🔄 Actualiser
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Configuration Options -->
+                <div class="dynamic-options-bar">
+                    <div class="option-item">
+                        <label for="dynamic-timeout-select">⏱️ Durée d'observation :</label>
+                        <select id="dynamic-timeout-select" class="select-input select-sm">
+                            <option value="15" selected>15 secondes</option>
+                            <option value="30">30 secondes</option>
+                            <option value="60">60 secondes</option>
+                            <option value="0">Manuel (en continu)</option>
+                        </select>
+                    </div>
+                    <div class="option-item">
+                        <label for="dynamic-args-input">Paramètres CLI (optionnel) :</label>
+                        <input type="text" id="dynamic-args-input" class="text-input-sm" placeholder="ex: --test" />
+                    </div>
+                </div>
+
+                <!-- Launch / Stop Buttons -->
+                <div class="dynamic-cta-row">
+                    <button id="btn-run-dynamic" type="button" class="btn btn-primary btn-glow">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        <span>Démarrer l'Audit Réseau</span>
+                    </button>
+                    <button id="btn-stop-dynamic" type="button" class="btn btn-danger hidden">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <rect x="6" y="6" width="12" height="12"></rect>
+                        </svg>
+                        <span>Arrêter & Générer le Rapport</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Live Monitoring Progress Overlay / Banner -->
+            <div id="dynamic-live-banner" class="dynamic-live-card glass-panel hidden">
+                <div class="live-indicator-wrap">
+                    <div class="live-radar">
+                        <div class="radar-ping"></div>
+                        <div class="radar-point"></div>
+                    </div>
+                    <div>
+                        <div class="live-title-row">
+                            <span class="pulse-tag">SURVEILLANCE ACTIVE</span>
+                            <span id="live-timer-text" class="live-timer">00:00 / 00:15</span>
+                        </div>
+                        <h3 id="live-target-title">Observation du processus en cours...</h3>
+                        <p id="live-target-meta">Interception des sockets, arbres de processus et résolutions DNS</p>
+                    </div>
+                </div>
+                <div class="live-mini-counters">
+                    <div class="live-counter-box">
+                        <span id="live-count-conns" class="live-val">0</span>
+                        <span class="live-lbl">Trames détectées</span>
+                    </div>
+                    <div class="live-counter-box">
+                        <span id="live-count-procs" class="live-val">1</span>
+                        <span class="live-lbl">Processus surveillés</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Results Container -->
+            <div id="dynamic-results-view" class="dashboard-layout hidden">
+                <!-- Top Summary Cards -->
+                <div class="overview-grid">
+                    <!-- Network Score Card -->
+                    <div class="metric-card score-card glass-panel">
+                        <div class="score-card-header">
+                            <span class="card-label">VIBE NETWORK SCORE</span>
+                            <span id="net-badge-level" class="status-badge badge-success">🛡️ 100% OFFLINE</span>
+                        </div>
+                        <div class="score-gauge-wrap">
+                            <svg class="score-gauge-svg" viewBox="0 0 140 140">
+                                <circle class="gauge-bg" cx="70" cy="70" r="58"></circle>
+                                <circle id="net-gauge-fill" class="gauge-fill gauge-fill-success" cx="70" cy="70" r="58"></circle>
+                            </svg>
+                            <div class="gauge-inner-text">
+                                <span id="net-score-num" class="score-number">100</span>
+                                <span class="score-total">/100</span>
+                            </div>
+                        </div>
+                        <p id="net-verdict" class="score-verdict">Aucun flux réseau détecté.</p>
+                    </div>
+
+                    <!-- Dynamic Metrics Card -->
+                    <div class="metric-card stats-card glass-panel">
+                        <span class="card-label">MÉTRIQUES RÉSEAU</span>
+                        <div class="stats-mini-grid">
+                            <div class="mini-stat">
+                                <span class="stat-value text-accent" id="stat-net-conns">0</span>
+                                <span class="stat-name">Trames sortantes</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="stat-value" id="stat-net-dests">0</span>
+                                <span class="stat-name">Destinations uniques</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="stat-value" id="stat-net-procs">0</span>
+                                <span class="stat-name">Processus dans l'arbre</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="stat-value text-info" id="stat-net-io">0 KB</span>
+                                <span class="stat-name">I/O Processus</span>
+                            </div>
+                        </div>
+                        <div class="export-actions">
+                            <button id="btn-export-dynamic-json" type="button" class="btn btn-secondary btn-sm">
+                                💾 Télécharger Rapport JSON
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Network Categories Breakdown -->
+                    <div class="metric-card categories-card glass-panel">
+                        <span class="card-label">RÉPARTITION DU TRAFIC</span>
+                        <div id="net-category-bars" class="category-bars-wrap">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Process Tree Visualizer Card -->
+                <div class="action-plan-card glass-panel">
+                    <div class="section-title-row">
+                        <div class="title-with-icon">
+                            <span class="section-icon">🌳</span>
+                            <h3>Arbre des Processus Surveillés</h3>
+                        </div>
+                        <span id="net-process-tree-summary" class="badge-hint">1 processus principal</span>
+                    </div>
+                    <div id="net-process-tree-container" class="process-tree-grid">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Destinations Explorer Table -->
+                <div class="findings-explorer glass-panel">
+                    <div class="findings-header">
+                        <div class="title-with-icon">
+                            <span class="section-icon">🌐</span>
+                            <h3>Cartographie des Destinations Réseau (<span id="net-dest-count">0</span>)</h3>
+                        </div>
+                    </div>
+                    <div id="net-destinations-table-container" class="destinations-table-wrap">
+                        <!-- Table rendered here -->
+                    </div>
+                </div>
+
+                <!-- Live Stream Timeline of Events -->
+                <div class="findings-explorer glass-panel">
+                    <div class="findings-header">
+                        <div class="title-with-icon">
+                            <span class="section-icon">⏱️</span>
+                            <h3>Journal Chronologique des Événements Réseau (<span id="net-timeline-count">0</span>)</h3>
+                        </div>
+                    </div>
+                    <div id="net-timeline-container" class="timeline-stream-wrap">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Static Binary URLs -->
+                <div id="net-static-urls-card" class="action-plan-card glass-panel">
+                    <div class="section-title-row">
+                        <div class="title-with-icon">
+                            <span class="section-icon">🔍</span>
+                            <h3>Endpoints & URLs Détectés dans le Binaire (.EXE)</h3>
+                        </div>
+                        <span id="net-static-urls-count" class="badge-hint">0 URLs</span>
+                    </div>
+                    <div id="net-static-urls-list" class="static-urls-grid">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>Vibe Audit Engine — Conçu pour sécuriser et élever les architectures créées avec LLM & Vibe Coding.</p>
+        </footer>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

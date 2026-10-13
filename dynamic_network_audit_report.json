@@ -1,0 +1,17 @@
+{
+  "exe_path": "C:\\Windows\\System32\\curl.exe",
+  "audit_timestamp": "2026-09-11T21:10:08.839873",
+  "total_connections": 0,
+  "unique_destinations": [],
+  "categories_summary": {},
+  "verdict": "VERIFIED_OFFLINE",
+  "verdict_description": "Aucun flux réseau sortant détecté. L'application respecte un fonctionnement 100% local.",
+  "score": 100,
+  "processes_monitored": [
+    {
+      "name": "curl.exe",
+      "read_bytes": 0,
+      "write_bytes": 0
+    }
+  ]
+}

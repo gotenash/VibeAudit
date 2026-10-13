@@ -1,0 +1,6 @@
+# Requirements for Chaos SaaS
+# Note: fastapi is imported in main.py but MISSING here!
+# Note: easy_gpt4 is imported in main.py but does not exist!
+requests==2.20.0
+unused_heavy_bloat_package==2.4.1
+another_unused_dependency==1.0.0
