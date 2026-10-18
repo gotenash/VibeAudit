@@ -1,5 +1,5 @@
 ('C:\\Users\\ash\\Documents\\GitHub\\vibe '
- 'audit\\build\\VibeAudit\\VibeAudit.pkg',
+ 'audit\\VibeAudit\\build\\VibeAudit\\VibeAudit.pkg',
  {'BINARY': True,
   'DATA': True,
   'EXECUTABLE': True,
@@ -12,27 +12,27 @@
  [('pyi-contents-directory _internal', '', 'OPTION'),
   ('PYZ-00.pyz',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\build\\VibeAudit\\PYZ-00.pyz',
+   'audit\\VibeAudit\\build\\VibeAudit\\PYZ-00.pyz',
    'PYZ'),
   ('struct',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\build\\VibeAudit\\localpycs\\struct.pyc',
+   'audit\\VibeAudit\\build\\VibeAudit\\localpycs\\struct.pyc',
    'PYMODULE'),
   ('pyimod01_archive',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\build\\VibeAudit\\localpycs\\pyimod01_archive.pyc',
+   'audit\\VibeAudit\\build\\VibeAudit\\localpycs\\pyimod01_archive.pyc',
    'PYMODULE'),
   ('pyimod02_importers',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\build\\VibeAudit\\localpycs\\pyimod02_importers.pyc',
+   'audit\\VibeAudit\\build\\VibeAudit\\localpycs\\pyimod02_importers.pyc',
    'PYMODULE'),
   ('pyimod03_ctypes',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\build\\VibeAudit\\localpycs\\pyimod03_ctypes.pyc',
+   'audit\\VibeAudit\\build\\VibeAudit\\localpycs\\pyimod03_ctypes.pyc',
    'PYMODULE'),
   ('pyimod04_pywin32',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\build\\VibeAudit\\localpycs\\pyimod04_pywin32.pyc',
+   'audit\\VibeAudit\\build\\VibeAudit\\localpycs\\pyimod04_pywin32.pyc',
    'PYMODULE'),
   ('pyiboot01_bootstrap',
    'C:\\Users\\ash\\AppData\\Roaming\\Python\\Python314\\site-packages\\PyInstaller\\loader\\pyiboot01_bootstrap.py',
@@ -46,7 +46,9 @@
   ('pyi_rth_pkgutil',
    'C:\\Users\\ash\\AppData\\Roaming\\Python\\Python314\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_pkgutil.py',
    'PYSOURCE'),
-  ('app', 'C:\\Users\\ash\\Documents\\GitHub\\vibe audit\\app.py', 'PYSOURCE'),
+  ('app',
+   'C:\\Users\\ash\\Documents\\GitHub\\vibe audit\\VibeAudit\\app.py',
+   'PYSOURCE'),
   ('python314.dll', 'C:\\Python314\\python314.dll', 'BINARY'),
   ('_zstd.pyd', 'C:\\Python314\\DLLs\\_zstd.pyd', 'EXTENSION'),
   ('_lzma.pyd', 'C:\\Python314\\DLLs\\_lzma.pyd', 'EXTENSION'),
@@ -73,60 +75,63 @@
   ('python3.dll', 'C:\\Python314\\python3.dll', 'BINARY'),
   ('samples\\hardened_app\\.gitignore',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\samples\\hardened_app\\.gitignore',
+   'audit\\VibeAudit\\samples\\hardened_app\\.gitignore',
    'DATA'),
   ('samples\\hardened_app\\app.py',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\samples\\hardened_app\\app.py',
+   'audit\\VibeAudit\\samples\\hardened_app\\app.py',
    'DATA'),
   ('samples\\hardened_app\\requirements.txt',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\samples\\hardened_app\\requirements.txt',
+   'audit\\VibeAudit\\samples\\hardened_app\\requirements.txt',
    'DATA'),
   ('samples\\hardened_app\\tests\\test_app.py',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\samples\\hardened_app\\tests\\test_app.py',
+   'audit\\VibeAudit\\samples\\hardened_app\\tests\\test_app.py',
    'DATA'),
   ('samples\\network_test_app.py',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\samples\\network_test_app.py',
+   'audit\\VibeAudit\\samples\\network_test_app.py',
    'DATA'),
   ('samples\\vibe_chaos_saas\\.env',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\samples\\vibe_chaos_saas\\.env',
+   'audit\\VibeAudit\\samples\\vibe_chaos_saas\\.env',
    'DATA'),
   ('samples\\vibe_chaos_saas\\.gitignore',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\samples\\vibe_chaos_saas\\.gitignore',
+   'audit\\VibeAudit\\samples\\vibe_chaos_saas\\.gitignore',
    'DATA'),
   ('samples\\vibe_chaos_saas\\frontend.js',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\samples\\vibe_chaos_saas\\frontend.js',
+   'audit\\VibeAudit\\samples\\vibe_chaos_saas\\frontend.js',
    'DATA'),
   ('samples\\vibe_chaos_saas\\main.py',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\samples\\vibe_chaos_saas\\main.py',
+   'audit\\VibeAudit\\samples\\vibe_chaos_saas\\main.py',
    'DATA'),
   ('samples\\vibe_chaos_saas\\requirements.txt',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\samples\\vibe_chaos_saas\\requirements.txt',
+   'audit\\VibeAudit\\samples\\vibe_chaos_saas\\requirements.txt',
    'DATA'),
   ('static\\css\\style.css',
-   'C:\\Users\\ash\\Documents\\GitHub\\vibe audit\\static\\css\\style.css',
+   'C:\\Users\\ash\\Documents\\GitHub\\vibe '
+   'audit\\VibeAudit\\static\\css\\style.css',
    'DATA'),
   ('static\\index.html',
-   'C:\\Users\\ash\\Documents\\GitHub\\vibe audit\\static\\index.html',
+   'C:\\Users\\ash\\Documents\\GitHub\\vibe '
+   'audit\\VibeAudit\\static\\index.html',
    'DATA'),
   ('static\\js\\app.js',
-   'C:\\Users\\ash\\Documents\\GitHub\\vibe audit\\static\\js\\app.js',
+   'C:\\Users\\ash\\Documents\\GitHub\\vibe '
+   'audit\\VibeAudit\\static\\js\\app.js',
    'DATA'),
   ('static\\js\\dynamic_audit.js',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\static\\js\\dynamic_audit.js',
+   'audit\\VibeAudit\\static\\js\\dynamic_audit.js',
    'DATA'),
   ('base_library.zip',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\build\\VibeAudit\\base_library.zip',
+   'audit\\VibeAudit\\build\\VibeAudit\\base_library.zip',
    'DATA')],
  'python314.dll',
  False,

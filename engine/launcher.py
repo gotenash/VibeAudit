@@ -10,18 +10,33 @@ import subprocess
 import tempfile
 import webbrowser
 
-PORT = 5173
+PORT = 8765
 
-def find_available_port(start_port: int = PORT, max_attempts: int = 15) -> int:
-    for p in range(start_port, start_port + max_attempts):
+def is_port_available(port: int) -> bool:
+    # Verifie IPv4
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            s.bind(("127.0.0.1", port))
+    except OSError:
+        return False
+
+    # Verifie IPv6 si supporte
+    if socket.has_ipv6:
         try:
-            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-                s.bind(("127.0.0.1", p))
-                return p
+            with socket.socket(socket.AF_INET6, socket.SOCK_STREAM) as s6:
+                s6.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                s6.bind(("::1", port))
         except OSError:
-            continue
-    return start_port
+            return False
 
+    return True
+
+def find_available_port(start_port: int = PORT, max_attempts: int = 25) -> int:
+    for p in range(start_port, start_port + max_attempts):
+        if is_port_available(p):
+            return p
+    return start_port
 def _get_browser_candidates() -> list:
     candidates = [
         r"C:\Program Files\Google\Chrome\Application\chrome.exe",

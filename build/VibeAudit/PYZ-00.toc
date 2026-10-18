@@ -1,4 +1,5 @@
-('C:\\Users\\ash\\Documents\\GitHub\\vibe audit\\build\\VibeAudit\\PYZ-00.pyz',
+('C:\\Users\\ash\\Documents\\GitHub\\vibe '
+ 'audit\\VibeAudit\\build\\VibeAudit\\PYZ-00.pyz',
  [('__future__', 'C:\\Python314\\Lib\\__future__.py', 'PYMODULE'),
   ('_aix_support', 'C:\\Python314\\Lib\\_aix_support.py', 'PYMODULE'),
   ('_ast_unparse', 'C:\\Python314\\Lib\\_ast_unparse.py', 'PYMODULE'),
@@ -102,51 +103,59 @@
   ('engine', '-', 'PYMODULE'),
   ('engine.dynamic_network_audit',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\engine\\dynamic_network_audit.py',
+   'audit\\VibeAudit\\engine\\dynamic_network_audit.py',
    'PYMODULE'),
   ('engine.launcher',
-   'C:\\Users\\ash\\Documents\\GitHub\\vibe audit\\engine\\launcher.py',
+   'C:\\Users\\ash\\Documents\\GitHub\\vibe '
+   'audit\\VibeAudit\\engine\\launcher.py',
    'PYMODULE'),
   ('engine.report_generator',
-   'C:\\Users\\ash\\Documents\\GitHub\\vibe audit\\engine\\report_generator.py',
+   'C:\\Users\\ash\\Documents\\GitHub\\vibe '
+   'audit\\VibeAudit\\engine\\report_generator.py',
    'PYMODULE'),
   ('engine.rules',
-   'C:\\Users\\ash\\Documents\\GitHub\\vibe audit\\engine\\rules\\__init__.py',
+   'C:\\Users\\ash\\Documents\\GitHub\\vibe '
+   'audit\\VibeAudit\\engine\\rules\\__init__.py',
    'PYMODULE'),
   ('engine.rules.architecture',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\engine\\rules\\architecture.py',
+   'audit\\VibeAudit\\engine\\rules\\architecture.py',
    'PYMODULE'),
   ('engine.rules.base',
-   'C:\\Users\\ash\\Documents\\GitHub\\vibe audit\\engine\\rules\\base.py',
+   'C:\\Users\\ash\\Documents\\GitHub\\vibe '
+   'audit\\VibeAudit\\engine\\rules\\base.py',
    'PYMODULE'),
   ('engine.rules.dep_vulnerabilities',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\engine\\rules\\dep_vulnerabilities.py',
+   'audit\\VibeAudit\\engine\\rules\\dep_vulnerabilities.py',
    'PYMODULE'),
   ('engine.rules.ghost_deps',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\engine\\rules\\ghost_deps.py',
+   'audit\\VibeAudit\\engine\\rules\\ghost_deps.py',
    'PYMODULE'),
   ('engine.rules.lazy_errors',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\engine\\rules\\lazy_errors.py',
+   'audit\\VibeAudit\\engine\\rules\\lazy_errors.py',
    'PYMODULE'),
   ('engine.rules.secrets',
-   'C:\\Users\\ash\\Documents\\GitHub\\vibe audit\\engine\\rules\\secrets.py',
+   'C:\\Users\\ash\\Documents\\GitHub\\vibe '
+   'audit\\VibeAudit\\engine\\rules\\secrets.py',
    'PYMODULE'),
   ('engine.rules.security',
-   'C:\\Users\\ash\\Documents\\GitHub\\vibe audit\\engine\\rules\\security.py',
+   'C:\\Users\\ash\\Documents\\GitHub\\vibe '
+   'audit\\VibeAudit\\engine\\rules\\security.py',
    'PYMODULE'),
   ('engine.rules.testing_docs',
    'C:\\Users\\ash\\Documents\\GitHub\\vibe '
-   'audit\\engine\\rules\\testing_docs.py',
+   'audit\\VibeAudit\\engine\\rules\\testing_docs.py',
    'PYMODULE'),
   ('engine.scanner',
-   'C:\\Users\\ash\\Documents\\GitHub\\vibe audit\\engine\\scanner.py',
+   'C:\\Users\\ash\\Documents\\GitHub\\vibe '
+   'audit\\VibeAudit\\engine\\scanner.py',
    'PYMODULE'),
   ('engine.tech_detector',
-   'C:\\Users\\ash\\Documents\\GitHub\\vibe audit\\engine\\tech_detector.py',
+   'C:\\Users\\ash\\Documents\\GitHub\\vibe '
+   'audit\\VibeAudit\\engine\\tech_detector.py',
    'PYMODULE'),
   ('fnmatch', 'C:\\Python314\\Lib\\fnmatch.py', 'PYMODULE'),
   ('fractions', 'C:\\Python314\\Lib\\fractions.py', 'PYMODULE'),

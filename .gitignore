@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# PyInstaller & Build artifacts
+build/
+dist/
+*.manifest
+
+# OS & Temp
+.DS_Store
+Thumbs.db
+*.log

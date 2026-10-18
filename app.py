@@ -46,7 +46,7 @@ from engine.tech_detector import TechDetector
 from engine.dynamic_network_audit import DynamicNetworkAuditor, extract_static_domains
 from engine.launcher import launch_fullscreen_app, find_available_port
 
-PORT = 5173
+PORT = 8765
 
 # Dynamic Network Audit Global State
 active_dynamic_auditor = None
@@ -345,7 +345,7 @@ def run_server(port=None, open_browser=True):
 
     actual_port = find_available_port(PORT if port is None else port)
     server = ThreadingHTTPServer(("0.0.0.0", actual_port), VibeAuditHandler)
-    url = f"http://localhost:{actual_port}"
+    url = f"http://127.0.0.1:{actual_port}"
 
     print("==================================================")
     print(f"[+] VIBE AUDIT Web App is running at:")

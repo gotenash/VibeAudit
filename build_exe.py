@@ -47,6 +47,8 @@ def build_vibe_audit(mode="onefile"):
     samples_folder = os.path.join(BASE_DIR, "samples")
 
     mode_flag = "--onefile" if mode == "onefile" else "--onedir"
+    icon_file = os.path.join(BASE_DIR, "assets", "icon.ico")
+    icon_args = [f"--icon={icon_file}"] if os.path.isfile(icon_file) else []
 
     cmd = [
         sys.executable, "-m", "PyInstaller",
@@ -55,6 +57,7 @@ def build_vibe_audit(mode="onefile"):
         "--noconsole",  # Supprime complètement la fenêtre d'invite de commande
         "--noconfirm",
         "--clean",
+        *icon_args,
         f"--add-data={static_folder};static",
         f"--add-data={samples_folder};samples",
         "--hidden-import=psutil",
@@ -133,6 +136,7 @@ def build_cli_audit():
         "--onefile",
         "--noconfirm",
         "--clean",
+        *icon_args,
         "--hidden-import=psutil",
         "--hidden-import=engine",
         "--hidden-import=engine.dynamic_network_audit",

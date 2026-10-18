@@ -2,10 +2,10 @@
 
 
 a = Analysis(
-    ['C:/Users/ash/Documents/GitHub/vibe audit/app.py'],
+    ['C:/Users/ash/Documents/GitHub/vibe audit/VibeAudit/app.py'],
     pathex=[],
     binaries=[],
-    datas=[('C:/Users/ash/Documents/GitHub/vibe audit/static', 'static'), ('C:/Users/ash/Documents/GitHub/vibe audit/samples', 'samples')],
+    datas=[('C:/Users/ash/Documents/GitHub/vibe audit/VibeAudit/static', 'static'), ('C:/Users/ash/Documents/GitHub/vibe audit/VibeAudit/samples', 'samples')],
     hiddenimports=['psutil', 'engine', 'engine.rules', 'engine.rules.base', 'engine.rules.architecture', 'engine.rules.ghost_deps', 'engine.rules.lazy_errors', 'engine.rules.secrets', 'engine.rules.security', 'engine.rules.dep_vulnerabilities', 'engine.rules.testing_docs', 'engine.scanner', 'engine.tech_detector', 'engine.report_generator', 'engine.dynamic_network_audit'],
     hookspath=[],
     hooksconfig={},
@@ -35,4 +35,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    icon=['C:/Users/ash/Documents/GitHub/vibe audit/VibeAudit/assets/icon.ico'],
 )

@@ -49,7 +49,7 @@ Le **vibe coding** permet de concevoir des applications et des prototypes à une
 
 ## 🖥️ Interface Web Dashboard
 
-Vibe Audit intègre un serveur Web moderne accessible sur le navigateur (`http://localhost:5173`) avec une interface sombre de type **glassmorphism** :
+Vibe Audit intègre un serveur Web moderne accessible sur le navigateur (`http://127.0.0.1:8765`) avec une interface sombre de type **glassmorphism** :
 
 - **Double onglet** : Basculez instantanément entre l'audit statique et l'audit dynamique d'exécutables.
 - **Visualiseur radar animé** : Suivi visuel des paquets capturés au fil de l'eau.
@@ -86,7 +86,7 @@ Démarrez le serveur applicatif local :
 python app.py
 ```
 Ouvrez ensuite votre navigateur sur :
-👉 **`http://localhost:5173`**
+👉 **`http://127.0.0.1:8765`**
 
 ---
 
@@ -129,7 +129,7 @@ Vibe Audit est disponible sous la forme d'un **exécutable unique et autonome (`
 ### 1. Démarrage en 1 clic :
 - **Double-cliquez sur `Lancer_Vibe_Audit.bat`** à la racine du projet.
 - Ou lancez directement : **`dist\VibeAudit.exe`**.
-- L'exécutable démarre le serveur local et ouvre automatiquement votre navigateur sur le Dashboard (`http://localhost:5173`).
+- L'exécutable démarre le serveur local et ouvre automatiquement votre navigateur sur le Dashboard (`http://127.0.0.1:8765`).
 - **100% portable** : Vous pouvez copier le fichier `dist\VibeAudit.exe` sur votre bureau, une clé USB ou une autre machine Windows sans avoir besoin d'installer Python.
 
 ### 2. Outil CLI autonome :
@@ -156,7 +156,7 @@ Vibe Audit est disponible sous la forme d'un **exécutable unique et autonome (`
 ```text
 vibe audit/
 │
-├── app.py                         # Serveur Web HTTP & API REST (port 5173)
+├── app.py                         # Serveur Web HTTP & API REST (port 8765)
 ├── vibe_audit.py                  # Point d'entrée CLI pour l'audit statique
 ├── audit_exe.py                   # Point d'entrée CLI pour l'audit dynamique d'exécutables
 ├── build_exe.py                   # Script de compilation PyInstaller (.exe)
